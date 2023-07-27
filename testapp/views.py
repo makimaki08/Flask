@@ -4,3 +4,6 @@ from testapp import app
 def index():
     return 'Hellow World!'
 
+@app.route('/test')
+def other1():
+    return "テストページです！"
