@@ -14,7 +14,9 @@
 	<h2>タイトル表示</h2>
 	<ul>
 		{% for title in my_dict.test_titles %}
-		<li>{{ title }}</li>
+			{% if title == 'title2' %}
+				<li>{{ title }}</li>
+			{% endif %}
 		{% endfor %}
 	</ul>
 </body>
