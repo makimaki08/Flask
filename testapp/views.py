@@ -3,8 +3,11 @@ from testapp import app
 
 @app.route('/')
 def index():
-    data = "views.pyのinsert_something部分です"
-    return render_template('testapp/index.html', insert_something=data)
+    my_dict = {
+        'insert_something1': 'views.pyのinsert_something1部分です',
+        'insert_something2': 'views.pyのinsert_something2部分です'
+    }
+    return render_template('testapp/index.html', my_dict=my_dict)
 
 @app.route('/test')
 def other1():
