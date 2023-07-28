@@ -5,7 +5,7 @@
 	<h1>index.htmlを表示しています</h1>
 	<img src="{{ url_for('static', filename='images/flask-logo.png') }}" alt="">
 
-	<p>{{my_dict.insert_something1}}</p>
+	<p id="test">{{my_dict.insert_something1}}</p>
 	<p>{{my_dict.insert_something2}}</p>
 
 	<h2>タイトル表示</h2>
@@ -21,4 +21,5 @@
 		{% endfor %}
 	</ul>	
 </div>
+<script src="{{ url_for('static', filename='javascript/sample.js') }}"></script>
 {% endblock %}
