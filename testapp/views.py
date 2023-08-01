@@ -15,13 +15,12 @@ def other1():
     return render_template('testapp/index2.html')
 
 
-@app.route('/sampleform')
+@app.route('/sampleform', methods=['GET', 'POST'])
 def sample_form():
-    return render_template('testapp/sampleform.html')
+    if request.method == 'GET':
+        return render_template('testapp/sampleform.html')
 
-
-@app.route('/sampleform-post', methods=['POST'])
-def sample_form_temp():
-    print('POSTデータを受け取ったので処理します')
-    req1 = request.form['data1']
-    return f'POSTデータを受け取ったよ: {req1}'
+    if request.method == 'POST':
+        print('POSTデータを受け取ったので処理します')
+        req1 = request.form['data1']
+        return f'POSTデータを受け取ったよ: {req1}'
