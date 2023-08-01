@@ -48,5 +48,9 @@ def sample_form():
         else:
             judgement = 'lose'
 
-        print(f'じゃんけん開始: enemy_hand: {enemy_hand}, player_hand:{player_hand}, judgement:{judgement}')
-        return f'相手:{enemy_hand_ja}, あなた:{player_hand_ja}, 判定:{janken_mapping[judgement]}'
+        result = {
+            'enemy_hand_ja':enemy_hand_ja,
+            'player_hand_ja':player_hand_ja,
+            'judgement':judgement
+        }
+        return render_template('testapp/janken_result.html', result=result)
