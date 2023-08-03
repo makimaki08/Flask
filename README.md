@@ -15,3 +15,6 @@ Flaskのアプリケーションを格納するフォルダ
 
   testapp/viws.py
     →ホームページとして表示するビューを構成するファイル
+
+# Appendix
+  itermだとConda環境が切り替わらないため、terminalを利用
