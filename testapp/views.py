@@ -54,3 +54,7 @@ def sample_form():
             'judgement':judgement
         }
         return render_template('testapp/janken_result.html', result=result)
+
+@app.route('/add_employee', methods=['GET', 'POST'])
+def add_employee():
+    return render_template('testapp/add_employee.html')
