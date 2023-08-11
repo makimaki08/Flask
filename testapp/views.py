@@ -102,7 +102,7 @@ def employee_edit(id):
 
 @app.route('/employees/<int:id>/update', methods=['POST'])
 def employee_update(id):
-    employee = Employee.query.get(id) # 更新対象のデータをDBから取得
+    employee = Employee.query.get_or_404(id) # 更新対象のデータをDBから取得
     employee.name = request.form.get('name')
     employee.mail = request.form.get('mail')
     employee.is_remote = request.form.get('is_remote', default=False, type=bool)
@@ -110,5 +110,12 @@ def employee_update(id):
     employee.year = request.form.get('year', default=0, type=int)
 
     db.session.merge(employee)
+    db.session.commit()
+    return redirect(url_for('employee_list'))
+
+@app.route('/employees/<int:id>/delete', methods=['POST'])
+def employee_delete(id):
+    employee = Employee.query.get_or_404(id)
+    db.session.delete(employee)
     db.session.commit()
     return redirect(url_for('employee_list'))
