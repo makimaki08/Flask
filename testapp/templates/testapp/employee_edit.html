@@ -5,19 +5,19 @@
 	<h2>データの編集ページ</h2>
 	<form action="{{url_for('employee_update', id=employee.id)}}" method="POST">
 		<label for="name">従業員</label>
-		<input type="text" name="name">
+		<input type="text" name="name" value="{{employee.name}}">
 
 		<label for="name">メールアドレス</label>
-		<input type="text" name="mail">
+		<input type="text" name="mail" value="{{employee.mail}}">
 
 		<label for="name">リモートワークの有無</label>
-		<input type="checkbox" name="is_remote">
+		<input type="checkbox" name="is_remote" value="{{employee.is_remote}}">
 
 		<label for="name">部署</label>
-		<input type="text" name="department">
+		<input type="text" name="department" value="{{employee.department}}">
 
 		<label for="name">勤続年数</label>
-		<input type="type" name="year" min="0">
+		<input type="type" name="year" min="0" value="{{employee.year}}">
 
 		<button type="submit" class="btn btn-primary">従業員情報更新</button>
 
