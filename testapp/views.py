@@ -1,6 +1,8 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from testapp import app
 from random import randint
+from testapp import db
+from testapp.models.employee import Employee
 
 @app.route('/')
 def index():
@@ -54,3 +56,31 @@ def sample_form():
             'judgement':judgement
         }
         return render_template('testapp/janken_result.html', result=result)
+
+@app.route('/add_employee', methods=['GET', 'POST'])
+def add_employee():
+    if request.method == 'GET':
+        return render_template('testapp/add_employee.html')
+    if request.method == 'POST':
+        # str型の値を取得
+        form_name = request.form.get('name')
+        form_mail = request.form.get('mail')
+        form_department = request.form.get('department')
+
+        # bool型の値を取得
+        form_is_remote = request.form.get("is_remote", default=False, type=bool)
+
+        # int型の値を取得
+        form_year = request.form.get('year', default=0, type=int)
+
+
+        employee = Employee(
+            name = form_name,
+            mail = form_mail,
+            is_remote = form_is_remote,
+            department = form_department,
+            year = form_year
+        )
+        db.session.add(employee)
+        db.session.commit()
+        return redirect(url_for('index'))
