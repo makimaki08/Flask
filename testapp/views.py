@@ -94,3 +94,28 @@ def employee_list():
 def employee_detail(id):
     employee = Employee.query.get_or_404(id)
     return render_template('testapp/employee_detail.html', employee=employee)
+
+@app.route('/employees/<int:id>/edit', methods=['GET'])
+def employee_edit(id):
+    employee = Employee.query.get_or_404(id)
+    return render_template('testapp/employee_edit.html', employee=employee)
+
+@app.route('/employees/<int:id>/update', methods=['POST'])
+def employee_update(id):
+    employee = Employee.query.get_or_404(id) # 更新対象のデータをDBから取得
+    employee.name = request.form.get('name')
+    employee.mail = request.form.get('mail')
+    employee.is_remote = request.form.get('is_remote', default=False, type=bool)
+    employee.department = request.form.get('department')
+    employee.year = request.form.get('year', default=0, type=int)
+
+    db.session.merge(employee)
+    db.session.commit()
+    return redirect(url_for('employee_list'))
+
+@app.route('/employees/<int:id>/delete', methods=['POST'])
+def employee_delete(id):
+    employee = Employee.query.get_or_404(id)
+    db.session.delete(employee)
+    db.session.commit()
+    return redirect(url_for('employee_list'))
