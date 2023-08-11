@@ -1,6 +1,8 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from testapp import app
 from random import randint
+from testapp import db
+from testapp.models.employee import Employee
 
 @app.route('/')
 def index():
@@ -57,4 +59,16 @@ def sample_form():
 
 @app.route('/add_employee', methods=['GET', 'POST'])
 def add_employee():
-    return render_template('testapp/add_employee.html')
+    if request.method == 'GET':
+        return render_template('testapp/add_employee.html')
+    if request.method == 'POST':
+        employee = Employee(
+            name = 'Tanaka',
+            mail = 'aaa@aa.com',
+            is_remote = False,
+            department = 'develop',
+            year = 2
+        )
+        db.session.add(employee)
+        db.session.commit()
+        return redirect(url_for('index'))
