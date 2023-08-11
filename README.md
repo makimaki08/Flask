@@ -1,5 +1,7 @@
 # Flask
 Flaskのアプリケーションを格納するフォルダ
+以下を参考にして作成
+https://qiita.com/Bashi50/items/30065e8f54f7e8038323
 
 # 実行環境
   Python 3.9.7
