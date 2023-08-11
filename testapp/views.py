@@ -62,12 +62,24 @@ def add_employee():
     if request.method == 'GET':
         return render_template('testapp/add_employee.html')
     if request.method == 'POST':
+        # str型の値を取得
+        form_name = request.form.get('name')
+        form_mail = request.form.get('mail')
+        form_department = request.form.get('department')
+
+        # bool型の値を取得
+        form_is_remote = request.form.get("is_remote", default=False, type=bool)
+
+        # int型の値を取得
+        form_year = request.form.get('year', default=0, type=int)
+
+
         employee = Employee(
-            name = 'Tanaka',
-            mail = 'aaa@aa.com',
-            is_remote = False,
-            department = 'develop',
-            year = 2
+            name = form_name,
+            mail = form_mail,
+            is_remote = form_is_remote,
+            department = form_department,
+            year = form_year
         )
         db.session.add(employee)
         db.session.commit()
