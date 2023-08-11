@@ -84,3 +84,8 @@ def add_employee():
         db.session.add(employee)
         db.session.commit()
         return redirect(url_for('index'))
+
+@app.route('/employees')
+def employee_list():
+    employees = Employee.query.all()
+    return render_template('testapp/employee_list.html', employees = employees)
